@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    width: 50%;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  input[type="text"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+
+  input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .result {
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .result p {
+    font-weight: bold;
+    color: #28a745;
+  }
+
+  .result.error p {
+    color: #dc3545;
+  }
+  .spam{
+    color: red;
+    text-align:center;
+  }
+  .not-spam{
+    color: green;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h2>Email Spam Classifier</h2>
+
+  <form action="/predict" method="post">
+    <label for="emailContent">Email Content:</label>
+    <textarea id="emailContent" name="email-content" rows="4" required>{{ email }}</textarea>
+
+    <input type="submit" value="Classify">
+    <a href="/">Reset</a>
+  </form>
+
+  {% if predictions == 1%}
+    <div class="spam">
+      <h1> SPAM </h1>
+    </div>
+  {% elif predictions == -1%}
+    <div class="not-spam">
+      <h1> NOT A SPAM </h1>
+    </div>
+  {% endif %}
+</body>
+</html>
+
+</html>
